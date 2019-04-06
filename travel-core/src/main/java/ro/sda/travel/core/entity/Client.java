@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "client", schema = "travel")
+@Table(name = "clients", schema = "travel")
 public class Client extends BaseEntity {
 
 
@@ -16,9 +16,9 @@ public class Client extends BaseEntity {
     private String name;
 
     @Column(name = "mail", length = 40, nullable = false)
-    private String email;
+    private String mail;
 
-    @Column(name = "phone", length = 15)
+    @Column(name = "phone", length = 20)
     private String telephone;
 
     public String getName() {
@@ -30,11 +30,11 @@ public class Client extends BaseEntity {
     }
 
     public String getEmail() {
-        return email;
+        return mail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.mail = email;
     }
 
     public String getTelephone() {
@@ -51,12 +51,12 @@ public class Client extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
         return name.equals(client.name) &&
-                email.equals(client.email) &&
+                mail.equals(client.mail) &&
                 telephone.equals(client.telephone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, telephone);
+        return Objects.hash(name, mail, telephone);
     }
 }

@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "host", schema = "travel")
+@Table(name = "hosts", schema = "travel")
 public class Host extends BaseEntity {
 
     @Column(name = "name", length = 40, nullable = false)
