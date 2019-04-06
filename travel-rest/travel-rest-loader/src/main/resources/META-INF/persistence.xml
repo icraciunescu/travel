@@ -7,6 +7,10 @@
 		<class>ro.sda.travel.core.entity.Client</class>
 		<class>ro.sda.travel.core.entity.Host</class>
 		<class>ro.sda.travel.core.entity.Property</class>
+		<class>ro.sda.travel.core.entity.Booking</class>
+		<class>ro.sda.travel.core.entity.Availability</class>
+		<class>ro.sda.travel.core.entity.Payment</class>
+		<class>ro.sda.travel.core.entity.Rating</class>
 
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>

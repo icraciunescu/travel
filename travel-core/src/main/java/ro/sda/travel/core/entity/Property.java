@@ -11,6 +11,7 @@ import java.util.Objects;
 @Table(name = "properties", schema = "travel")
 public class Property extends BaseEntity {
 
+
     @Column(name = "name", length = 40, nullable = false)
     private String name;
 
