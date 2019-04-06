@@ -21,7 +21,7 @@ public class Rating extends BaseEntity {
     private int propertyId;
 
     @Column(name = "rating", length = 1)
-    private String rating;
+    private int rating;
 
 
     public int getClientId() {
@@ -48,11 +48,11 @@ public class Rating extends BaseEntity {
         this.propertyId = propertyId;
     }
 
-    public String getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -63,8 +63,8 @@ public class Rating extends BaseEntity {
         Rating rating1 = (Rating) o;
         return clientId == rating1.clientId &&
                 propertyId == rating1.propertyId &&
-                comment.equals(rating1.comment) &&
-                rating.equals(rating1.rating);
+                rating == rating1.rating &&
+                comment.equals(rating1.comment);
     }
 
     @Override
