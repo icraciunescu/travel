@@ -5,6 +5,9 @@
 	<persistence-unit name="travel" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>ro.sda.travel.core.entity.Client</class>
+		<class>ro.sda.travel.core.entity.Host</class>
+
+
 <!--		<class>ro.sda.hypermarket.ro.sda.travel.core.entity.Client</class>-->
 <!--		<class>ro.sda.hypermarket.core.entity.Department</class>-->
 <!--		<class>ro.sda.hypermarket.core.entity.Employee</class>-->

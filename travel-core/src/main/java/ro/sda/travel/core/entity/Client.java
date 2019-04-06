@@ -1,18 +1,16 @@
 package ro.sda.travel.core.entity;
 
+import ro.sda.travel.core.base.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
 @Table(name = "client", schema = "travel")
-public class Client {
+public class Client extends BaseEntity {
 
-    @Id
-    @Column(name = "id", length = 7, nullable = false)
-    private int id;
 
     @Column(name = "name", length = 40, nullable = false)
     private String name;
@@ -22,14 +20,6 @@ public class Client {
 
     @Column(name = "phone", length = 15)
     private String telephone;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -60,14 +50,13 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return id == client.id &&
-                name.equals(client.name) &&
+        return name.equals(client.name) &&
                 email.equals(client.email) &&
                 telephone.equals(client.telephone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, telephone);
+        return Objects.hash(name, email, telephone);
     }
 }
