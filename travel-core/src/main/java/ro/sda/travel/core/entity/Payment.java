@@ -15,7 +15,7 @@ public class Payment extends BaseEntity {
     @Column(name = "amount", length = 11, nullable = false)
     private int amount;
 
-    @Column(name = "payment_data", length = 3, nullable = false)
+    @Column(name = "payment_data", length = 2, nullable = false)
     private int paymentData;
 
     @Column(name = "booking_id", length = 11, nullable = false)

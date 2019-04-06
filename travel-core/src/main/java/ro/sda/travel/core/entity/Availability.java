@@ -19,10 +19,10 @@ public class Availability extends BaseEntity {
     @Column(name = "room_name", length = 40, nullable = false)
     public String roomName;
 
-    @Column(name = "from_data", length = 3, nullable = false)
+    @Column(name = "from_data", length = 2, nullable = false)
     public int fromData;
 
-    @Column(name = "to_data", length = 3, nullable = false)
+    @Column(name = "to_data", length = 2, nullable = false)
     public int toData;
 
     @Column(name = "room_type", length = 40, nullable = false)

@@ -20,7 +20,7 @@ public class Rating extends BaseEntity {
     @Column(name = "property_id", length = 11, nullable = false)
     private int propertyId;
 
-    @Column(name = "rating", length = 10)
+    @Column(name = "rating", length = 1)
     private String rating;
 
 
