@@ -2,9 +2,7 @@ package ro.sda.travel.core.entity;
 
 import ro.sda.travel.core.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -17,13 +15,27 @@ public class Payment extends BaseEntity {
 
     @Column(name = "payment_data", length = 2, nullable = false)
     private int paymentData;
-
-    @Column(name = "booking_id", length = 11, nullable = false)
-    private int bookingId;
-
+@OneToOne
+    @JoinColumn(name = "booking_id", nullable = false)
+    private Booking booking;
 
     public int getAmount() {
         return amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Payment payment = (Payment) o;
+        return amount == payment.amount &&
+                paymentData == payment.paymentData &&
+                booking.equals(payment.booking);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, paymentData, booking);
     }
 
     public void setAmount(int amount) {
@@ -38,26 +50,11 @@ public class Payment extends BaseEntity {
         this.paymentData = paymentData;
     }
 
-    public int getBookingId() {
-        return bookingId;
+    public Booking getBooking() {
+        return booking;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Payment payment = (Payment) o;
-        return amount == payment.amount &&
-                paymentData == payment.paymentData &&
-                bookingId == payment.bookingId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(amount, paymentData, bookingId);
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 }

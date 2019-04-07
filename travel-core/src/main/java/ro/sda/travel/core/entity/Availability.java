@@ -2,9 +2,7 @@ package ro.sda.travel.core.entity;
 
 import ro.sda.travel.core.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 
@@ -12,9 +10,9 @@ import java.util.Objects;
 @Table(name = "availability", schema = "travel")
 public class Availability extends BaseEntity {
 
-
-    @Column(name = "property_id", length = 11, nullable = false)
-    public int propertyId;
+@ManyToOne
+    @JoinColumn(name = "property_id", nullable = false)
+    public Property property;
 
     @Column(name = "room_name", length = 40, nullable = false)
     public String roomName;
@@ -34,13 +32,31 @@ public class Availability extends BaseEntity {
     @Column(name = "price_single", length = 11, nullable = false)
     public int priceSingle;
 
-
-    public int getPropertyId() {
-        return propertyId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Availability that = (Availability) o;
+        return fromData == that.fromData &&
+                toData == that.toData &&
+                priceDouble == that.priceDouble &&
+                priceSingle == that.priceSingle &&
+                property.equals(that.property) &&
+                roomName.equals(that.roomName) &&
+                roomType.equals(that.roomType);
     }
 
-    public void setPropertyId(int propertyId) {
-        this.propertyId = propertyId;
+    @Override
+    public int hashCode() {
+        return Objects.hash(property, roomName, fromData, toData, roomType, priceDouble, priceSingle);
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
     }
 
     public String getRoomName() {
@@ -89,24 +105,5 @@ public class Availability extends BaseEntity {
 
     public void setPriceSingle(int priceSingle) {
         this.priceSingle = priceSingle;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Availability that = (Availability) o;
-        return propertyId == that.propertyId &&
-                fromData == that.fromData &&
-                toData == that.toData &&
-                priceDouble == that.priceDouble &&
-                priceSingle == that.priceSingle &&
-                roomName.equals(that.roomName) &&
-                roomType.equals(that.roomType);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(propertyId, roomName, fromData, toData, roomType, priceDouble, priceSingle);
     }
 }
