@@ -4,8 +4,6 @@
 //import org.springframework.data.repository.NoRepositoryBean;
 //
 //@NoRepositoryBean
-//public interface EntityRepository<T extends BaseEntity> extends JpaRepository<T, Integer> {
-//
-//    T findById(int id);
-//
+//public interface EntityRepository<T extends BaseEntity>extends JpaRepository<T, Long> {
+//    T findById(long id);
 //}
