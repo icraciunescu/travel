@@ -55,6 +55,12 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-orm</artifactId>
     </dependency>
+    <dependency>
+        <groupId>org.jetbrains</groupId>
+        <artifactId>annotations-java5</artifactId>
+        <version>RELEASE</version>
+        <scope>compile</scope>
+    </dependency>
     <!-- SPRING Dependencies END -->
 </dependencies>
 

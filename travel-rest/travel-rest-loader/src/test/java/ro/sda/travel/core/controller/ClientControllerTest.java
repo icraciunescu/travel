@@ -30,5 +30,15 @@ public class ClientControllerTest {
         Assert.assertNotNull(client);
     }
 
+    @Test
+    @Rollback(false)
+    public void testRead(){
+        Client client = clientController.getClientById(1);
+        int actual = client.getId();
+        int expected = 1;
+        System.out.println(client.toString());
+        Assert.assertEquals(expected, actual);
+    }
+
 
 }

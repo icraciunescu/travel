@@ -15,9 +15,9 @@ public class ClientController {
         return clientService.createClient(client);
     }
 
-//    public Client getClientById(int id) {
-//        return clientService.getClientById(client.getId());
-//
-//    }
+    public Client getClientById(int id) {
+        return clientService.getClientById((id));
+
+    }
 
 }

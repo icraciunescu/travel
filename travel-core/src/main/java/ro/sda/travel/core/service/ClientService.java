@@ -15,7 +15,7 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-//    public Client getClientById(Client client) {
-//        return clientRepository.getClitntById(client.getId());
-//    }
+    public Client getClientById(int id) {
+        return clientRepository.findOne(id);
+    }
 }
