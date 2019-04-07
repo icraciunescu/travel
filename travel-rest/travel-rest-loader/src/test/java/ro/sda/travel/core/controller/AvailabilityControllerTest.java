@@ -11,7 +11,6 @@
 //import org.springframework.transaction.annotation.Transactional;
 //import ro.sda.travel.core.entity.Availability;
 //
-//
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration("classpath:/spring-config/spring-root.xml")
 //@Transactional
@@ -25,7 +24,9 @@
 //    @Rollback(false)
 //    public void testCreate() {
 //        Availability availability = new Availability();
-//        availability.setName("Vasile");
+//
+//        availability.setPriceDouble(2);
+//        availability.setFromData(1);
 //        availabilityController.createAvailability(availability);
 //        Assert.assertNotNull(availability);
 //    }
