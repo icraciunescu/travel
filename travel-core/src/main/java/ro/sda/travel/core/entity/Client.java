@@ -15,7 +15,7 @@ public class Client extends BaseEntity {
     @Column(name = "name", length = 40, nullable = false)
     private String name;
 
-    @Column(name = "mail", length = 40, nullable = false)
+    @Column(name = "mail", length = 40)
     private String mail;
 
     @Column(name = "phone", length = 20)
