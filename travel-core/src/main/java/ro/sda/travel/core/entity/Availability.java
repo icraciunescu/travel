@@ -1,6 +1,7 @@
 package ro.sda.travel.core.entity;
 
 import ro.sda.travel.core.base.BaseEntity;
+import ro.sda.travel.core.enums.RoomType;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -24,7 +25,7 @@ public class Availability extends BaseEntity {
     public int toData;
 
     @Column(name = "room_type", length = 40, nullable = false)
-    public String roomType;
+    public RoomType roomType;
 
     @Column(name = "price_double", length = 11, nullable = false)
     public int priceDouble;
@@ -83,11 +84,11 @@ public class Availability extends BaseEntity {
         this.toData = toData;
     }
 
-    public String getRoomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
