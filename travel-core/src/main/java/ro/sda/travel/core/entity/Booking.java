@@ -2,21 +2,19 @@ package ro.sda.travel.core.entity;
 
 import ro.sda.travel.core.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 
 @Entity
 @Table(name = "booking", schema = "travel")
 public class Booking extends BaseEntity {
-
-    @Column(name = "client_id", length = 40, nullable = false)
-    private int clientId;
-
-    @Column(name = "property_id", length = 11, nullable = false)
-    private int propertyId;
+@ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
+    @ManyToOne
+    @JoinColumn(name = "property_id", nullable = false)
+    private Property property;
 
     @Column(name = "check_in", length = 2, nullable = false)
     private int checkIn;
@@ -36,20 +34,40 @@ public class Booking extends BaseEntity {
     @Column(name = "booking_data", length = 2, nullable = false)
     private int bookingData;
 
-    public int getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return checkIn == booking.checkIn &&
+                checkOut == booking.checkOut &&
+                nrOfPersons == booking.nrOfPersons &&
+                numberOfRooms == booking.numberOfRooms &&
+                bookingData == booking.bookingData &&
+                client.equals(booking.client) &&
+                property.equals(booking.property) &&
+                roomType.equals(booking.roomType);
     }
 
-    public int getPropertyId() {
-        return propertyId;
+    @Override
+    public int hashCode() {
+        return Objects.hash(client, property, checkIn, checkOut, nrOfPersons, roomType, numberOfRooms, bookingData);
     }
 
-    public void setPropertyId(int propertyId) {
-        this.propertyId = propertyId;
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
     }
 
     public int getCheckIn() {
@@ -98,25 +116,5 @@ public class Booking extends BaseEntity {
 
     public void setBookingData(int bookingData) {
         this.bookingData = bookingData;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Booking booking = (Booking) o;
-        return clientId == booking.clientId &&
-                propertyId == booking.propertyId &&
-                checkIn == booking.checkIn &&
-                checkOut == booking.checkOut &&
-                nrOfPersons == booking.nrOfPersons &&
-                numberOfRooms == booking.numberOfRooms &&
-                bookingData == booking.bookingData &&
-                roomType.equals(booking.roomType);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(clientId, propertyId, checkIn, checkOut, nrOfPersons, roomType, numberOfRooms, bookingData);
     }
 }
