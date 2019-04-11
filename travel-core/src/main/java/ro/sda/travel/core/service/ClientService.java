@@ -18,4 +18,17 @@ public class ClientService {
     public Client getClientById(int id) {
         return clientRepository.findOne(id);
     }
+
+    public Client updateClient(int id, String newName, String newMail, String newTelephone) {
+        Client clientFromDb = getClientById(id);
+        clientFromDb.setName(newName);
+        clientFromDb.setEmail(newMail);
+        clientFromDb.setTelephone(newTelephone);
+        return clientRepository.save(clientFromDb);
+    }
+
+    public void deleteClient(int id) {
+        clientRepository.delete(id);
+    }
 }
+
