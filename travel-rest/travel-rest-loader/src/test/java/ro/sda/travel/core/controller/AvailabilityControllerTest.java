@@ -49,11 +49,11 @@ public class AvailabilityControllerTest {
         Availability availability = new Availability();
         availability.setProperty(property);
         availability.setPriceDouble(1);
-        availability.setFromData(1);
+//        availability.setFromData(3);
         availability.setPriceSingle(1);
         availability.setRoomName("name");
         availability.setRoomType(RoomType.SINGLE);
-        availability.setToData(1);
+//        availability.setToData(3);
 
         availabilityController.createAvailability(availability);
         Assert.assertNotNull(availability);

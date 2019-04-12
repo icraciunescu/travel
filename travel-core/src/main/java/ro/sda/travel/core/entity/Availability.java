@@ -19,10 +19,10 @@ public class Availability extends BaseEntity {
     @Column(name = "room_name", length = 40, nullable = false)
     public String roomName;
 
-    @Column(name = "from_data", length = 10, nullable = false)
+    @Column(name = "from_data", nullable = false)
     public Date fromData;
 
-    @Column(name = "to_data", length = 10, nullable = false)
+    @Column(name = "to_data", nullable = false)
     public Date toData;
 
     @Column(name = "room_type", length = 40, nullable = false)
@@ -39,13 +39,13 @@ public class Availability extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Availability that = (Availability) o;
-        return fromData == that.fromData &&
-                toData == that.toData &&
-                priceDouble == that.priceDouble &&
+        return priceDouble == that.priceDouble &&
                 priceSingle == that.priceSingle &&
-                property.equals(that.property) &&
-                roomName.equals(that.roomName) &&
-                roomType.equals(that.roomType);
+                Objects.equals(property, that.property) &&
+                Objects.equals(roomName, that.roomName) &&
+                Objects.equals(fromData, that.fromData) &&
+                Objects.equals(toData, that.toData) &&
+                roomType == that.roomType;
     }
 
     @Override

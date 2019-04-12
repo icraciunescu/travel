@@ -30,5 +30,9 @@ public class ClientService {
     public void deleteClient(int id) {
         clientRepository.delete(id);
     }
+
+    public Iterable<Client> getAllClient() {
+        return clientRepository.findAll();
+    }
 }
 

@@ -18,10 +18,10 @@ public class Booking extends BaseEntity {
     @JoinColumn(name = "property_id", nullable = false)
     private Property property;
 
-    @Column(name = "check_in", length = 10, nullable = false)
+    @Column(name = "check_in", nullable = false)
     private Date checkIn;
 
-    @Column(name = "check_out", length = 10, nullable = false)
+    @Column(name = "check_out", nullable = false)
     private Date checkOut;
 
     @Column(name = "nr_of_person", length = 2, nullable = false)
@@ -33,7 +33,7 @@ public class Booking extends BaseEntity {
     @Column(name = "number_of_rooms", length = 3, nullable = false)
     private int numberOfRooms;
 
-    @Column(name = "booking_data", length = 10, nullable = false)
+    @Column(name = "booking_data", nullable = false)
     private Date bookingData;
 
     public Client getClient() {

@@ -14,7 +14,7 @@ public class Payment extends BaseEntity {
     @Column(name = "amount", length = 11, nullable = false)
     private int amount;
 
-    @Column(name = "payment_data", length = 10, nullable = false)
+    @Column(name = "payment_data", nullable = false)
     private Date paymentData;
 @OneToOne
     @JoinColumn(name = "booking_id", nullable = false)

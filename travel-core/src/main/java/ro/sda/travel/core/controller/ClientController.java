@@ -20,6 +20,10 @@ public class ClientController {
 
     }
 
+    public Iterable<Client> getAllClient() {
+        return clientService.getAllClient();
+    }
+
     public Client updateClient(int id, String newName, String newMail, String newTelephone) {
         return clientService.updateClient(id, newName, newMail, newTelephone);
     }

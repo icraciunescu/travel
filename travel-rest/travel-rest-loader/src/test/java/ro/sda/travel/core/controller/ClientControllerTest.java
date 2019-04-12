@@ -40,15 +40,24 @@ public class ClientControllerTest {
         Assert.assertEquals(expected, actual);
     }
 
+//    @Test
+//    @Rollback(false)
+//    public void testReadAll(){
+//        Iterable<Client> client = clientController.getAllClient();
+//
+//        System.out.print(client.toString());
+//        //Assert.assertEquals(expected, actual);
+//    }
+
     @Test
     @Rollback(false)
     public void testUpdate() {
-        Client clientFromDb = clientController.getClientById(2);
+        Client clientFromDb = clientController.getClientById(1);
         clientFromDb.setName("vasile");
         clientFromDb.setEmail("old@mail.com");
         clientFromDb.setTelephone("123456789");
-        Client client = clientController.updateClient(2,"nicu","mail@mail.com","0000000");
-        Client expected = clientController.updateClient(2,"ion","mail@mail.com","0000000");
+        Client client = clientController.updateClient(1,"nicu","mail@mail.com","0000000");
+        Client expected = clientController.updateClient(1,"ion","mail@mail.com","0000000");
         Client actual = client;
         Assert.assertEquals(expected, actual);
 
