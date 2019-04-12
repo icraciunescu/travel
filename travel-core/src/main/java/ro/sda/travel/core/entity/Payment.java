@@ -3,6 +3,7 @@ package ro.sda.travel.core.entity;
 import ro.sda.travel.core.base.BaseEntity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -13,8 +14,8 @@ public class Payment extends BaseEntity {
     @Column(name = "amount", length = 11, nullable = false)
     private int amount;
 
-    @Column(name = "payment_data", length = 2, nullable = false)
-    private int paymentData;
+    @Column(name = "payment_data", length = 10, nullable = false)
+    private Date paymentData;
 @OneToOne
     @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
@@ -42,11 +43,11 @@ public class Payment extends BaseEntity {
         this.amount = amount;
     }
 
-    public int getPaymentData() {
+    public Date getPaymentData() {
         return paymentData;
     }
 
-    public void setPaymentData(int paymentData) {
+    public void setPaymentData(Date paymentData) {
         this.paymentData = paymentData;
     }
 

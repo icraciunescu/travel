@@ -4,6 +4,7 @@ import ro.sda.travel.core.base.BaseEntity;
 import ro.sda.travel.core.enums.RoomType;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -18,11 +19,11 @@ public class Availability extends BaseEntity {
     @Column(name = "room_name", length = 40, nullable = false)
     public String roomName;
 
-    @Column(name = "from_data", length = 2, nullable = false)
-    public int fromData;
+    @Column(name = "from_data", length = 10, nullable = false)
+    public Date fromData;
 
-    @Column(name = "to_data", length = 2, nullable = false)
-    public int toData;
+    @Column(name = "to_data", length = 10, nullable = false)
+    public Date toData;
 
     @Column(name = "room_type", length = 40, nullable = false)
     public RoomType roomType;
@@ -68,19 +69,19 @@ public class Availability extends BaseEntity {
         this.roomName = roomName;
     }
 
-    public int getFromData() {
+    public Date getFromData() {
         return fromData;
     }
 
-    public void setFromData(int fromData) {
+    public void setFromData(Date fromData) {
         this.fromData = fromData;
     }
 
-    public int getToData() {
+    public Date getToData() {
         return toData;
     }
 
-    public void setToData(int toData) {
+    public void setToData(Date toData) {
         this.toData = toData;
     }
 

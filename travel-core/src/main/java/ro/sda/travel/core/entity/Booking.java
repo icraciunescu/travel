@@ -4,6 +4,7 @@ import ro.sda.travel.core.base.BaseEntity;
 import ro.sda.travel.core.enums.RoomType;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -17,11 +18,11 @@ public class Booking extends BaseEntity {
     @JoinColumn(name = "property_id", nullable = false)
     private Property property;
 
-    @Column(name = "check_in", length = 2, nullable = false)
-    private int checkIn;
+    @Column(name = "check_in", length = 10, nullable = false)
+    private Date checkIn;
 
-    @Column(name = "check_out", length = 2, nullable = false)
-    private int checkOut;
+    @Column(name = "check_out", length = 10, nullable = false)
+    private Date checkOut;
 
     @Column(name = "nr_of_person", length = 2, nullable = false)
     private int nrOfPersons;
@@ -32,8 +33,8 @@ public class Booking extends BaseEntity {
     @Column(name = "number_of_rooms", length = 3, nullable = false)
     private int numberOfRooms;
 
-    @Column(name = "booking_data", length = 2, nullable = false)
-    private int bookingData;
+    @Column(name = "booking_data", length = 10, nullable = false)
+    private Date bookingData;
 
     public Client getClient() {
         return client;
@@ -71,19 +72,19 @@ public class Booking extends BaseEntity {
         this.property = property;
     }
 
-    public int getCheckIn() {
+    public Date getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(int checkIn) {
+    public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
     }
 
-    public int getCheckOut() {
+    public Date getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(int checkOut) {
+    public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
     }
 
@@ -111,11 +112,11 @@ public class Booking extends BaseEntity {
         this.numberOfRooms = numberOfRooms;
     }
 
-    public int getBookingData() {
+    public Date getBookingData() {
         return bookingData;
     }
 
-    public void setBookingData(int bookingData) {
+    public void setBookingData(Date bookingData) {
         this.bookingData = bookingData;
     }
 }
