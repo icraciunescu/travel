@@ -46,11 +46,25 @@ public class ClientControllerTest {
 
     @Test
     @Rollback(false)
+    @Transactional
     public void testReadAll(){
         List<Client> clients = clientController.getAllClient();
 
+        int actual = clients.size();
+
+        Client client = new Client();
+        client.setName("test");
+        client.setEmail("test@mail.com");
+        client.setTelephone("123456789");
+        clientController.createClient(client);
+
         System.out.println(clients.toString());
-        //Assert.assertEquals(expected, actual);
+
+        List<Client> clients2 = clientController.getAllClient();
+
+        int expected = clients2.size();
+
+        Assert.assertEquals(expected, actual + 1);
     }
 
     @Test
