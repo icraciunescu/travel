@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Client;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/spring-config/spring-root.xml")
 @Transactional
@@ -45,9 +47,9 @@ public class ClientControllerTest {
     @Test
     @Rollback(false)
     public void testReadAll(){
-        Iterable<Client> client = clientController.getAllClient();
+        List<Client> clients = clientController.getAllClient();
 
-        System.out.println(client.toString());
+        System.out.println(clients.toString());
         //Assert.assertEquals(expected, actual);
     }
 

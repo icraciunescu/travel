@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ro.sda.travel.core.repository.ClientRepository;
 import ro.sda.travel.core.entity.Client;
 
+import java.util.List;
+
 @Service
 public class ClientService {
 
@@ -19,6 +21,10 @@ public class ClientService {
         return clientRepository.findOne(id);
     }
 
+    public List<Client> getAllClient() {
+        return clientRepository.findAll();
+    }
+
     public Client updateClient(int id, String newName, String newMail, String newTelephone) {
         Client clientFromDb = getClientById(id);
         clientFromDb.setName(newName);
@@ -31,8 +37,6 @@ public class ClientService {
         clientRepository.delete(id);
     }
 
-    public Iterable<Client> getAllClient() {
-        return clientRepository.findAll();
-    }
+
 }
 
