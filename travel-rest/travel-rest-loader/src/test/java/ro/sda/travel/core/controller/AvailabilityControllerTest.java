@@ -72,4 +72,14 @@ public class AvailabilityControllerTest {
         Assert.assertNotNull(availability);
     }
 
+    @Test
+    @Rollback(false)
+    public void testRead(){
+        Availability availability = availabilityController.getAvailabilityById(2);
+        int actual = availability.getId();
+        int expected = 2;
+        System.out.println(availability.toString());
+        Assert.assertEquals(expected, actual);
+    }
+
 }

@@ -18,9 +18,11 @@ public class Booking extends BaseEntity {
     @JoinColumn(name = "property_id", nullable = false)
     private Property property;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "check_in", nullable = false)
     private Date checkIn;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "check_out", nullable = false)
     private Date checkOut;
 
@@ -33,6 +35,7 @@ public class Booking extends BaseEntity {
     @Column(name = "number_of_rooms", length = 3, nullable = false)
     private int numberOfRooms;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "booking_data", nullable = false)
     private Date bookingData;
 
@@ -118,5 +121,19 @@ public class Booking extends BaseEntity {
 
     public void setBookingData(Date bookingData) {
         this.bookingData = bookingData;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "client=" + client +
+                ", property=" + property +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", nrOfPersons=" + nrOfPersons +
+                ", roomType=" + roomType +
+                ", numberOfRooms=" + numberOfRooms +
+                ", bookingData=" + bookingData +
+                '}';
     }
 }
