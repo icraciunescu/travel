@@ -59,22 +59,22 @@ public class ClientControllerTest {
         System.out.println(clients.toString());
 
         List<Client> clients2 = clientController.getAllClient();
-
         int expected = clients2.size();
-
         Assert.assertEquals(expected, actual + 1);
     }
 
     @Test
     @Rollback(false)
     public void testUpdate() {
-        Client clientFromDb = clientController.getClientById(1);
-        clientFromDb.setName("vasile");
-        clientFromDb.setEmail("old@mail.com");
+        Client clientFromDb = clientController.getClientById(15);
+        clientFromDb.setName("daniel");
+        clientFromDb.setEmail("daniel@mail.com");
         clientFromDb.setTelephone("123456789");
-        Client client = clientController.updateClient(1,"nicu","mail@mail.com","000000000");
-        Client expected = clientController.updateClient(1,"ion","mail@mail.com","000000000");
-        Client actual = client;
+
+        System.out.println(clientFromDb.toString());
+
+        Client expected = clientController.updateClient(15,"daniel","daniel@mail.com","123456789");
+        Client actual = clientFromDb;
         Assert.assertEquals(expected, actual);
     }
 
