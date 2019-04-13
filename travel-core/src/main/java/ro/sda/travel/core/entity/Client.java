@@ -59,4 +59,13 @@ public class Client extends BaseEntity {
     public int hashCode() {
         return Objects.hash(name, mail, telephone);
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", mail='" + mail + '\'' +
+                ", telephone='" + telephone + '\'' +
+                '}';
+    }
 }

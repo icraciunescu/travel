@@ -25,7 +25,9 @@ public class ClientControllerTest {
     @Rollback(false)
     public void testCreate() {
         Client client = new Client();
-        client.setName("Vasile");
+        client.setName("vasile");
+        client.setEmail("old@mail.com");
+        client.setTelephone("123456789");
         clientController.createClient(client);
         Assert.assertNotNull(client);
     }
@@ -40,14 +42,14 @@ public class ClientControllerTest {
         Assert.assertEquals(expected, actual);
     }
 
-//    @Test
-//    @Rollback(false)
-//    public void testReadAll(){
-//        Iterable<Client> client = clientController.getAllClient();
-//
-//        System.out.print(client.toString());
-//        //Assert.assertEquals(expected, actual);
-//    }
+    @Test
+    @Rollback(false)
+    public void testReadAll(){
+        Iterable<Client> client = clientController.getAllClient();
+
+        System.out.println(client.toString());
+        //Assert.assertEquals(expected, actual);
+    }
 
     @Test
     @Rollback(false)
@@ -66,8 +68,8 @@ public class ClientControllerTest {
     @Test
     @Rollback(false)
     public void testDelete(){
-        Client client = clientController.getClientById(2);
-        clientController.deleteClient(2);
+        Client client = clientController.getClientById(3);
+        clientController.deleteClient(3);
         Assert.assertNotNull(client);
     }
 

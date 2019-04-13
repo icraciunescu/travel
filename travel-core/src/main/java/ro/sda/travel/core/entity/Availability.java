@@ -19,9 +19,11 @@ public class Availability extends BaseEntity {
     @Column(name = "room_name", length = 40, nullable = false)
     public String roomName;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "from_data", nullable = false)
     public Date fromData;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "to_data", nullable = false)
     public Date toData;
 

@@ -14,6 +14,9 @@ import ro.sda.travel.core.entity.Host;
 import ro.sda.travel.core.entity.Property;
 import ro.sda.travel.core.enums.RoomType;
 
+import java.util.Calendar;
+import java.util.Date;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/spring-config/spring-root.xml")
 @Transactional
@@ -49,11 +52,21 @@ public class AvailabilityControllerTest {
         Availability availability = new Availability();
         availability.setProperty(property);
         availability.setPriceDouble(1);
-//        availability.setFromData(3);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
+
+        calendar.set(2019,07,21);
+        Date fromData = calendar.getTime();
+        availability.setFromData(fromData);
+
         availability.setPriceSingle(1);
         availability.setRoomName("name");
         availability.setRoomType(RoomType.SINGLE);
-//        availability.setToData(3);
+
+        calendar.set(2019,07,28);
+        Date toData = calendar.getTime();
+        availability.setToData(toData);
 
         availabilityController.createAvailability(availability);
         Assert.assertNotNull(availability);
