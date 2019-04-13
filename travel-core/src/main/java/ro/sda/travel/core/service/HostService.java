@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ro.sda.travel.core.entity.Host;
 import ro.sda.travel.core.repository.HostRepository;
 
+import java.util.List;
+
 @Service
 public class HostService {
 
@@ -13,5 +15,17 @@ public class HostService {
 
     public Host createHost(Host host) {
         return hostRepository.save(host);
+    }
+
+    public Host getHostById(int id) {
+        return hostRepository.findOne(id);
+    }
+
+    public List<Host> getAllHost() {
+        return hostRepository.findAll();
+    }
+
+    public void deleteHost(int id) {
+        hostRepository.delete(id);
     }
 }

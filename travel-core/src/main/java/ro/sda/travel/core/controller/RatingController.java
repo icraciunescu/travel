@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.sda.travel.core.entity.Rating;
 import ro.sda.travel.core.service.RatingService;
 
+import java.util.List;
+
 @RestController
 public class RatingController {
 
@@ -14,5 +16,17 @@ public class RatingController {
 
     public Rating createRating(Rating rating) {
         return ratingService.createRating(rating);
+    }
+
+    public Rating getRatingById(int id) {
+        return ratingService.getRatingById(id);
+    }
+
+    public List<Rating> getAllRating() {
+        return ratingService.getAllRating();
+    }
+
+    public void deleteRating(int id) {
+        ratingService.deleteRating(id);
     }
 }

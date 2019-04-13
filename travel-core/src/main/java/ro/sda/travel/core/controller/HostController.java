@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.sda.travel.core.entity.Host;
 import ro.sda.travel.core.service.HostService;
 
+import java.util.List;
+
 @RestController
 public class HostController {
 
@@ -13,5 +15,17 @@ public class HostController {
 
     public Host createHost(Host host) {
         return hostService.createHost(host);
+    }
+
+    public Host getHostById(int id) {
+        return hostService.getHostById(id);
+    }
+
+    public List<Host> getAllHost() {
+        return hostService.getAllHost();
+    }
+
+    public void deleteHost(int id) {
+        hostService.deleteHost(id);
     }
 }

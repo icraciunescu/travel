@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import ro.sda.travel.core.entity.Property;
 import ro.sda.travel.core.repository.PropertyRepository;
 
+import java.util.List;
+
 @Service
 public class PropertyService {
 
@@ -15,4 +17,17 @@ public class PropertyService {
     public Property createProperty(Property property) {
         return propertyRepository.save(property);
     }
+
+    public Property getPropertyById(int id) {
+        return propertyRepository.findOne(id);
+    }
+
+    public List<Property> getAllProperty() {
+        return propertyRepository.findAll();
+    }
+
+    public void deleteProperty(int id) {
+        propertyRepository.delete(id);
+    }
+
 }

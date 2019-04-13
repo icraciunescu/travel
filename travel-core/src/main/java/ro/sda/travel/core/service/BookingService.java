@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.repository.BookingRepository;
 
+import java.util.List;
+
 @Service
 public class BookingService {
 
@@ -15,4 +17,15 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
+    public Booking getBookingById(int id) {
+        return bookingRepository.findOne(id);
+    }
+
+    public List<Booking> getAllBooking() {
+        return bookingRepository.findAll();
+    }
+
+    public void deleteBooking(int id) {
+        bookingRepository.delete(id);
+    }
 }

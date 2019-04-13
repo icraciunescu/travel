@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.service.BookingService;
 
+import java.util.List;
+
 @RestController
 public class BookingController {
 
@@ -13,5 +15,17 @@ public class BookingController {
 
     public Booking createBooking(Booking booking) {
         return bookingService.createBooking(booking);
+    }
+
+    public Booking getBookingById(int id) {
+        return bookingService.getBookingById(id);
+    }
+
+    public List<Booking> getAllBooking() {
+        return bookingService.getAllBooking();
+    }
+
+    public void deleteBooking(int id) {
+        bookingService.deleteBooking(id);
     }
 }

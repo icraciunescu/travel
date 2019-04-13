@@ -81,8 +81,8 @@ public class ClientControllerTest {
     @Test
     @Rollback(false)
     public void testDelete(){
-        Client client = clientController.getClientById(14);
-        clientController.deleteClient(14);
+        Client client = clientController.getClientById(16);
+        clientController.deleteClient(16);
         Assert.assertNotNull(client);
     }
 
