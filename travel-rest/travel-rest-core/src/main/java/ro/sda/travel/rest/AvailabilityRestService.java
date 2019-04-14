@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.service.AvailabilityService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -25,5 +23,26 @@ public class AvailabilityRestService {
         return availabilityService.getAllAvailability();
     }
 
+    @Path("/find/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Availability findById(@PathParam("id") int id) {
+        return availabilityService.getAvailabilityById(id);
+    }
+
+    @Path("/delete")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public void deleteAvailability(@QueryParam("availabilityId") int id) {
+        availabilityService.deleteAvailability(id);
+    }
+
+    @Path("/create")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Availability createAvailability(Availability availability) {
+        return availabilityService.createAvailability(availability);
+    }
 
 }
