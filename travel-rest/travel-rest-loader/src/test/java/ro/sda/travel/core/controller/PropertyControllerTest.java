@@ -9,12 +9,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.entity.Property;
-import ro.sda.travel.core.enums.RoomType;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -46,23 +42,23 @@ public class PropertyControllerTest {
         Assert.assertNotNull(property);
     }
 
-//    @Test
-//    @Rollback(false)
-//    public void testRead() {
-//        Property property = propertyController.getPropertyById(3);
-//        int actual = property.getId();
-//        int expected = 3;
-//        Assert.assertEquals(expected,actual);
-//    }
-//    @Test
-//    @Rollback(false)
-//    public void testReadAll() {
-//        List<Property>properties=propertyController.getAllProperty();
-//        int actual = properties.size();
-//        Property property= new Property();
-//        property.setAdress("pascani");
-//        property.setHost(hostController.getHostById(1));
-//
-////        deefijrfijrfjorfjorfjrjfelellefle;jwfwjg;jgjfdjdfjldfmldmldmlfdlsmlngknlaknksd sa gsihaeurg earougyao gwuwuWUG AILUG AI
+    @Test
+    @Rollback(false)
+    public void testRead() {
+        Property property = propertyController.getPropertyById(3);
+        int actual = property.getId();
+        int expected = 3;
+        Assert.assertEquals(expected, actual);
     }
-//}
+
+    @Test
+    @Rollback(false)
+    public void testReadAll() {
+        List<Property> properties = propertyController.getAllProperty();
+        int actual = properties.size();
+        Property property = new Property();
+        property.setAdress("pascani");
+        property.setHost(hostController.getHostById(1));
+
+    }
+}

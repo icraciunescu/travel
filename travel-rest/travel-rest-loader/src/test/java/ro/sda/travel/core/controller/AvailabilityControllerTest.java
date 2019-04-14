@@ -13,7 +13,6 @@ import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.entity.Host;
 import ro.sda.travel.core.entity.Property;
 import ro.sda.travel.core.enums.RoomType;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -82,5 +81,4 @@ public class AvailabilityControllerTest {
         System.out.println(availability.toString());
         Assert.assertEquals(expected, actual);
     }
-
 }
