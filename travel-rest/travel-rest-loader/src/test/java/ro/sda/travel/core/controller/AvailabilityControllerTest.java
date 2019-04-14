@@ -83,4 +83,5 @@ public class AvailabilityControllerTest {
         Assert.assertEquals(expected, actual);
     }
 
+
 }
