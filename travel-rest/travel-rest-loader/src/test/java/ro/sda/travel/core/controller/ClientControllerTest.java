@@ -67,13 +67,13 @@ public class ClientControllerTest {
     @Rollback(false)
     public void testUpdate() {
         Client clientFromDb = clientController.getClientById(15);
-        clientFromDb.setName("daniel");
+        clientFromDb.setName("dan");
         clientFromDb.setEmail("daniel@mail.com");
         clientFromDb.setTelephone("123456789");
 
         System.out.println(clientFromDb.toString());
 
-        Client expected = clientController.updateClient(15,"daniel","daniel@mail.com","123456789");
+        Client expected = clientController.updateClient(clientFromDb);
         Client actual = clientFromDb;
         Assert.assertEquals(expected, actual);
     }

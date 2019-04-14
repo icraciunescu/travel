@@ -57,4 +57,13 @@ public class BookingControllerTest {
         bookingController.createBooking(booking);
         Assert.assertNotNull(booking);
     }
+
+    @Test
+    @Rollback(false)
+    public void testRead() {
+        Booking booking = bookingController.getBookingById(1);
+        int actual = booking.getId();
+        int expected = 1;
+        Assert.assertEquals(expected,actual);
+    }
 }

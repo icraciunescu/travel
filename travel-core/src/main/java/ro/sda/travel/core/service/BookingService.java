@@ -25,7 +25,13 @@ public class BookingService {
         return bookingRepository.findAll();
     }
 
+    public Booking updateBooking(Booking booking) {
+        Booking bookingFromDb = bookingRepository.findOne(booking.getId());
+        return bookingRepository.save(bookingFromDb);
+    }
+
     public void deleteBooking(int id) {
         bookingRepository.delete(id);
     }
+
 }

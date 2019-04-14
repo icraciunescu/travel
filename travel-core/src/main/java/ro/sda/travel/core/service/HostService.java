@@ -25,7 +25,13 @@ public class HostService {
         return hostRepository.findAll();
     }
 
+    public Host updateHost(Host host) {
+        Host hostFromDb = hostRepository.findOne(host.getId());
+        return hostRepository.save(hostFromDb);
+    }
+
     public void deleteHost(int id) {
         hostRepository.delete(id);
     }
+
 }

@@ -26,6 +26,10 @@ public class RatingController {
         return ratingService.getAllRating();
     }
 
+    public Rating updateRating(Rating rating) {
+        return ratingService.updateRating(rating);
+    }
+
     public void deleteRating(int id) {
         ratingService.deleteRating(id);
     }

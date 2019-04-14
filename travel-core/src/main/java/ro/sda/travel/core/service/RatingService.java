@@ -25,7 +25,13 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
+    public Rating updateRating(Rating rating) {
+        Rating ratingFromDb = ratingRepository.findOne(rating.getId());
+        return ratingRepository.save(ratingFromDb);
+    }
+
     public void deleteRating(int id) {
         ratingRepository.delete(id);
     }
+
 }

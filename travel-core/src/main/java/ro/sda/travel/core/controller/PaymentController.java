@@ -25,6 +25,10 @@ public class PaymentController {
         return paymentService.getAllPayment();
     }
 
+    public Payment updatePayment(Payment payment) {
+        return paymentService.updatePayment(payment);
+    }
+
     public void deletePayment(int id) {
         paymentService.deletePayment(id);
     }

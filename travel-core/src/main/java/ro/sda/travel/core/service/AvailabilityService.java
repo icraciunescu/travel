@@ -25,7 +25,14 @@ public class AvailabilityService {
         return availabilityRepository.findAll();
     }
 
+    public Availability updateAvailability(Availability availability) {
+        Availability availabilityFromDb = availabilityRepository.findOne(availability.getId());
+        return availabilityRepository.save(availabilityFromDb);
+    }
+
     public void deleteAvailability(int id) {
         availabilityRepository.delete(id);
     }
+
+
 }

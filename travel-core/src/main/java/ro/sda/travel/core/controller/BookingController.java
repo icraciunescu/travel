@@ -25,6 +25,10 @@ public class BookingController {
         return bookingService.getAllBooking();
     }
 
+    public Booking updateBooking(Booking booking) {
+        return bookingService.updateBooking(booking);
+    }
+
     public void deleteBooking(int id) {
         bookingService.deleteBooking(id);
     }

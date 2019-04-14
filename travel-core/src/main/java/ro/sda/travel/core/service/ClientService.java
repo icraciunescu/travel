@@ -25,17 +25,15 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public Client updateClient(int id, String newName, String newMail, String newTelephone) {
-        Client clientFromDb = getClientById(id);
-        clientFromDb.setName(newName);
-        clientFromDb.setEmail(newMail);
-        clientFromDb.setTelephone(newTelephone);
+    public Client updateClient(Client client) {
+        Client clientFromDb = clientRepository.findOne(client.getId());
         return clientRepository.save(clientFromDb);
     }
 
     public void deleteClient(int id) {
         clientRepository.delete(id);
     }
+
 
 }
 

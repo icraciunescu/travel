@@ -26,9 +26,10 @@ public class ClientController {
         return clientService.getAllClient();
     }
 
-    public Client updateClient(int id, String newName, String newMail, String newTelephone) {
-        return clientService.updateClient(id, newName, newMail, newTelephone);
+    public Client updateClient(Client client) {
+        return clientService.updateClient(client);
     }
+
 
     public void deleteClient(int id) {
         clientService.deleteClient(id);

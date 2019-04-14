@@ -25,6 +25,10 @@ public class HostController {
         return hostService.getAllHost();
     }
 
+    public Host updateHost(Host host) {
+        return hostService.updateHost(host);
+    }
+
     public void deleteHost(int id) {
         hostService.deleteHost(id);
     }

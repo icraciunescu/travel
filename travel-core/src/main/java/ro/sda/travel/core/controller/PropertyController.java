@@ -25,6 +25,10 @@ public class PropertyController {
         return propertyService.getAllProperty();
     }
 
+    public Property updateProperty(Property property) {
+        return propertyService.updateProperty(property);
+    }
+
     public void deleteProperty(int id) {
         propertyService.deleteProperty(id);
     }

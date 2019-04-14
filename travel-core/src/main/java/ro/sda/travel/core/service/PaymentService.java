@@ -26,8 +26,14 @@ public class PaymentService {
         return paymentRepository.findAll();
     }
 
+    public Payment updatePayment(Payment payment) {
+        Payment paymentFromDb = paymentRepository.findOne(payment.getId());
+        return paymentRepository.save(paymentFromDb);
+    }
+
     public void deletePayment(int id) {
         paymentRepository.delete(id);
     }
+
 
 }

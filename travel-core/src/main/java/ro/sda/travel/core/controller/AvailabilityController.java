@@ -25,6 +25,9 @@ public class AvailabilityController {
         return availabilityService.getAllAvailability();
     }
 
+    public Availability updateAvailability(Availability availability) {
+        return availabilityService.updateAvailability(availability);
+    }
 
     public void deleteAvailability(int id) {
         availabilityService.deleteAvailability(id);

@@ -26,6 +26,11 @@ public class PropertyService {
         return propertyRepository.findAll();
     }
 
+    public Property updateProperty(Property property) {
+        Property propertyFromDb = propertyRepository.findOne(property.getId());
+        return propertyRepository.save(propertyFromDb);
+    }
+
     public void deleteProperty(int id) {
         propertyRepository.delete(id);
     }
