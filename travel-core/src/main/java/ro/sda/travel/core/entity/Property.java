@@ -81,4 +81,15 @@ public class Property extends BaseEntity {
     public void setAdress(String adress) {
         this.adress = adress;
     }
+
+    @Override
+    public String toString() {
+        return "Property{" +
+                "name='" + name + '\'' +
+                ", host=" + host +
+                ", mail='" + mail + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", adress='" + adress + '\'' +
+                '}';
+    }
 }

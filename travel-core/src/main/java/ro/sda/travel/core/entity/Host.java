@@ -46,4 +46,12 @@ public class Host extends BaseEntity {
     public int hashCode() {
         return Objects.hash(name, email);
     }
+
+    @Override
+    public String toString() {
+        return "Host{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

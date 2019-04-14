@@ -110,4 +110,17 @@ public class Availability extends BaseEntity {
     public void setPriceSingle(int priceSingle) {
         this.priceSingle = priceSingle;
     }
+
+    @Override
+    public String toString() {
+        return "Availability{" +
+                "property=" + property +
+                ", roomName='" + roomName + '\'' +
+                ", fromData=" + fromData +
+                ", toData=" + toData +
+                ", roomType=" + roomType +
+                ", priceDouble=" + priceDouble +
+                ", priceSingle=" + priceSingle +
+                '}';
+    }
 }

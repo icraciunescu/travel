@@ -55,6 +55,7 @@ public class BookingControllerTest {
         booking.setBookingData(date2);
 
         bookingController.createBooking(booking);
+        System.out.println(booking.toString());
         Assert.assertNotNull(booking);
     }
 

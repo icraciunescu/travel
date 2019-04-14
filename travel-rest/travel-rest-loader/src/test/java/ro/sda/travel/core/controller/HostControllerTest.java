@@ -1,0 +1,42 @@
+package ro.sda.travel.core.controller;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+import ro.sda.travel.core.entity.Host;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:/spring-config/spring-root.xml")
+@Transactional
+public class HostControllerTest {
+
+    @Autowired
+    @Qualifier("hostController")
+    public HostController hostController;
+
+    @Test
+    @Rollback(false)
+    public void testCreate() {
+        Host host = new Host();
+        host.setName("testHost");
+        host.setEmail("host@host.com");
+        hostController.createHost(host);
+        System.out.println(host.toString());
+        Assert.assertNotNull(host);
+    }
+
+    @Test
+    @Rollback(false)
+    public void testRead() {
+        Host host = hostController.getHostById(3);
+        int actual = host.getId();
+        int expected = 3;
+        Assert.assertEquals(expected,actual);
+    }
+}

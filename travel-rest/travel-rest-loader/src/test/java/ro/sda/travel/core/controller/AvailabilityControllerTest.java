@@ -69,6 +69,7 @@ public class AvailabilityControllerTest {
         availability.setToData(toData);
 
         availabilityController.createAvailability(availability);
+        System.out.println(availability.toString());
         Assert.assertNotNull(availability);
     }
 

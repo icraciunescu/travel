@@ -31,6 +31,7 @@ public class ClientControllerTest {
         client.setTelephone("123456789");
         clientController.createClient(client);
         System.out.println(client.toString());
+        Assert.assertNotNull(client);
     }
 
     @Test

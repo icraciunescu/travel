@@ -14,9 +14,10 @@ public class Payment extends BaseEntity {
     @Column(name = "amount", length = 11, nullable = false)
     private int amount;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "payment_data", nullable = false)
     private Date paymentData;
-@OneToOne
+    @OneToOne
     @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
 
@@ -57,5 +58,14 @@ public class Payment extends BaseEntity {
 
     public void setBooking(Booking booking) {
         this.booking = booking;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "amount=" + amount +
+                ", paymentData=" + paymentData +
+                ", booking=" + booking +
+                '}';
     }
 }

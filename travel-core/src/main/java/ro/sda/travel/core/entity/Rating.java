@@ -19,19 +19,20 @@ public class Rating extends BaseEntity {
     @JoinColumn(name = "property_id", nullable = false)
     private Property property;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Rating rating = (Rating) o;
-        return property.equals(rating.property) &&
-                comment.equals(rating.comment) &&
-                property.equals(rating.property);
+    public Client getClient() {
+        return client;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(property, comment, property);
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Property getProperty() {
@@ -42,11 +43,27 @@ public class Rating extends BaseEntity {
         this.property = property;
     }
 
-    public String getComment() {
-        return comment;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rating rating = (Rating) o;
+        return Objects.equals(client, rating.client) &&
+                Objects.equals(comment, rating.comment) &&
+                Objects.equals(property, rating.property);
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    @Override
+    public int hashCode() {
+        return Objects.hash(client, comment, property);
+    }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "client=" + client +
+                ", comment='" + comment + '\'' +
+                ", property=" + property +
+                '}';
     }
 }
