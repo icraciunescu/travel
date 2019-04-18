@@ -60,5 +60,34 @@ public class PropertyControllerTest {
         property.setAdress("pascani");
         property.setHost(hostController.getHostById(1));
 
+
+    }
+
+    @Test
+    @Rollback
+    public void testUpdate() {
+        Property propertyFromDB = propertyController.getPropertyById(1);
+        propertyFromDB.setAdress("vaslui");
+        propertyFromDB.setHost(hostController.getHostById(1));
+        propertyFromDB.setMail("dodkgokgofk@yahoo.com");
+        propertyFromDB.setName("vasilescuPulicescu");
+        propertyFromDB.setTelephone("00599958989622");
+
+
+        System.out.println(propertyController.toString());
+        Property expected = propertyController.updateProperty(propertyFromDB);
+        Property actual = propertyFromDB;
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    @Rollback
+    public void testDelete() {
+        Property property = propertyController.getPropertyById(1);
+        propertyController.deleteProperty(1);
+        Assert.assertNotNull(property);
+
     }
 }
+
+

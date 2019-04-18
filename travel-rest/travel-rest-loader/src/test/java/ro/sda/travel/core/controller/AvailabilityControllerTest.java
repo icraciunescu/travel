@@ -10,11 +10,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Availability;
+import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.entity.Host;
 import ro.sda.travel.core.entity.Property;
 import ro.sda.travel.core.enums.RoomType;
+
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/spring-config/spring-root.xml")
@@ -55,7 +58,7 @@ public class AvailabilityControllerTest {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
 
-        calendar.set(2019,07,21);
+        calendar.set(2019, 07, 21);
         Date fromData = calendar.getTime();
         availability.setFromData(fromData);
 
@@ -63,7 +66,7 @@ public class AvailabilityControllerTest {
         availability.setRoomName("name");
         availability.setRoomType(RoomType.SINGLE);
 
-        calendar.set(2019,07,28);
+        calendar.set(2019, 07, 28);
         Date toData = calendar.getTime();
         availability.setToData(toData);
 
@@ -74,11 +77,79 @@ public class AvailabilityControllerTest {
 
     @Test
     @Rollback(false)
-    public void testRead(){
+    public void testRead() {
         Availability availability = availabilityController.getAvailabilityById(2);
         int actual = availability.getId();
         int expected = 2;
         System.out.println(availability.toString());
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    @Rollback(false)
+    public void testReadAll() {
+        List<Availability> availabilities = availabilityController.getAllAvailability();
+        int actual = availabilities.size();
+        Availability availability = new Availability();
+        availability.setProperty(propertyController.getPropertyById(1));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
+        calendar.set(2019, 3, 28);
+        Date date = calendar.getTime();
+        availability.setFromData(date);
+        availability.setRoomName("gwsgfusfjsfhjsfh");
+        availability.setRoomType(RoomType.SINGLE);
+        availability.setPriceSingle(2222);
+        availability.setPriceDouble(4444);
+        calendar.setTimeInMillis(0);
+        calendar.set(2019, 3, 28);
+        Date date1 = calendar.getTime();
+        availability.setToData(date1);
+        calendar.setTimeInMillis(0);
+        calendar.set(2019, 3, 28);
+        Date date2 = calendar.getTime();
+        availability.setFromData(date2);
+
+
+        System.out.println(availabilities.toString());
+        List<Availability> availabilities1 = availabilityController.getAllAvailability();
+        int expected = availabilities.size();
+        Assert.assertEquals(expected, actual + 1);
+
+    }
+
+    @Test
+    @Rollback
+    public void testUpdate() {
+        Availability availabilityFromDB = availabilityController.getAvailabilityById(1);
+        availabilityFromDB.setPriceDouble(555);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
+        calendar.set(2019, 02, 28);
+        Date date = calendar.getTime();
+        availabilityFromDB.setFromData(date);
+        calendar.setTimeInMillis(0);
+        calendar.set(2019, 3, 28);
+        Date date1 = calendar.getTime();
+        availabilityFromDB.setToData(date1);
+        availabilityFromDB.setRoomType(RoomType.DOUBLE);
+        availabilityFromDB.setPriceSingle(222);
+        availabilityFromDB.setRoomName("sdsdushfshfhd");
+        availabilityFromDB.setProperty(propertyController.getPropertyById(2));
+
+        System.out.println(availabilityController.toString());
+
+        Availability expected = availabilityController.updateAvailability(availabilityFromDB);
+        Availability actual = availabilityFromDB;
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    @Rollback
+    public void testDelete() {
+        Availability availability = availabilityController.getAvailabilityById(2);
+        availabilityController.deleteAvailability(2);
+
+        Assert.assertNotNull(availability);
     }
 }
