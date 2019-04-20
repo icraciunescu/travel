@@ -19,7 +19,6 @@ public class ClientController {
 
     public Client getClientById(int id) {
         return clientService.getClientById((id));
-
     }
 
     public List<Client> getAllClient() {
@@ -29,7 +28,6 @@ public class ClientController {
     public Client updateClient(Client client) {
         return clientService.updateClient(client);
     }
-
 
     public void deleteClient(int id) {
         clientService.deleteClient(id);

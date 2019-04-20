@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Client;
-
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)

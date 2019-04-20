@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Payment;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;

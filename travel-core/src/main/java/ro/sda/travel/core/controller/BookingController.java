@@ -2,6 +2,7 @@ package ro.sda.travel.core.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.service.BookingService;
 
@@ -31,5 +32,9 @@ public class BookingController {
 
     public void deleteBooking(int id) {
         bookingService.deleteBooking(id);
+    }
+
+    public void sendBookingMail(Booking booking, Availability availability) {
+        bookingService.sendBookingMail(booking, availability);
     }
 }

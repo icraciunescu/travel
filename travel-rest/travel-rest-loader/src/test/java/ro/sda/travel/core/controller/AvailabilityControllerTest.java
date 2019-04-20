@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Availability;
-import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.entity.Host;
 import ro.sda.travel.core.entity.Property;
 import ro.sda.travel.core.enums.RoomType;
@@ -60,7 +59,7 @@ public class AvailabilityControllerTest {
 
         calendar.set(2019, 07, 21);
         Date fromData = calendar.getTime();
-        availability.setFromData(fromData);
+        availability.setFromDate(fromData);
 
         availability.setPriceSingle(1);
         availability.setRoomName("name");
@@ -68,7 +67,7 @@ public class AvailabilityControllerTest {
 
         calendar.set(2019, 07, 28);
         Date toData = calendar.getTime();
-        availability.setToData(toData);
+        availability.setToDate(toData);
 
         availabilityController.createAvailability(availability);
         System.out.println(availability.toString());
@@ -96,7 +95,7 @@ public class AvailabilityControllerTest {
         calendar.setTimeInMillis(0);
         calendar.set(2019, 3, 28);
         Date date = calendar.getTime();
-        availability.setFromData(date);
+        availability.setFromDate(date);
         availability.setRoomName("gwsgfusfjsfhjsfh");
         availability.setRoomType(RoomType.SINGLE);
         availability.setPriceSingle(2222);
@@ -104,11 +103,11 @@ public class AvailabilityControllerTest {
         calendar.setTimeInMillis(0);
         calendar.set(2019, 3, 28);
         Date date1 = calendar.getTime();
-        availability.setToData(date1);
+        availability.setToDate(date1);
         calendar.setTimeInMillis(0);
         calendar.set(2019, 3, 28);
         Date date2 = calendar.getTime();
-        availability.setFromData(date2);
+        availability.setFromDate(date2);
 
 
         System.out.println(availabilities.toString());
@@ -127,11 +126,11 @@ public class AvailabilityControllerTest {
         calendar.setTimeInMillis(0);
         calendar.set(2019, 02, 28);
         Date date = calendar.getTime();
-        availabilityFromDB.setFromData(date);
+        availabilityFromDB.setFromDate(date);
         calendar.setTimeInMillis(0);
         calendar.set(2019, 3, 28);
         Date date1 = calendar.getTime();
-        availabilityFromDB.setToData(date1);
+        availabilityFromDB.setToDate(date1);
         availabilityFromDB.setRoomType(RoomType.DOUBLE);
         availabilityFromDB.setPriceSingle(222);
         availabilityFromDB.setRoomName("sdsdushfshfhd");

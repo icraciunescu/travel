@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.service.AvailabilityService;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,5 +32,17 @@ public class AvailabilityController {
 
     public void deleteAvailability(int id) {
         availabilityService.deleteAvailability(id);
+    }
+
+    public List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromData, Date toData) {
+        return availabilityService.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromData, toData);
+    }
+
+    public boolean existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromData, Date toData) {
+        return availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromData, toData);
+    }
+
+    public List<Availability> getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(Date fromData, Date toData) {
+        return availabilityService.getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(fromData, toData);
     }
 }

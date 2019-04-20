@@ -2,9 +2,13 @@ package ro.sda.travel.core.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.sda.travel.commons.SendEmail;
+import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.entity.Booking;
+import ro.sda.travel.core.enums.RoomType;
 import ro.sda.travel.core.repository.BookingRepository;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -12,6 +16,12 @@ public class BookingService {
 
     @Autowired
     private BookingRepository bookingRepository;
+
+    @Autowired
+    private AvailabilityService availabilityService;
+
+    private SendEmail sendEmail = new SendEmail();
+
 
     public Booking createBooking(Booking booking) {
         return bookingRepository.save(booking);
@@ -32,6 +42,46 @@ public class BookingService {
 
     public void deleteBooking(int id) {
         bookingRepository.delete(id);
+    }
+
+    public void sendBookingMail(Booking booking, Availability availability) {
+
+        String message = "Dear " + booking.getClient().getName() + "\n" + "Thank you for choosing "
+                + booking.getProperty().getName() + ". According to your order, we make a reservation for you as following:"
+                + "\n" + "-" + booking.getNumberOfRooms() + " room(s) "
+                + "\n" + booking.getRoomType()
+                + "\n" + " check-in date: " + booking.getCheckIn()
+                + "\n" + " check-out date: " + booking.getCheckOut()
+                + "\n" + "price: " + getIntervalBetweenTwoDates(booking.getCheckIn(),booking.getCheckOut())*
+                getRoomPrice(availability,booking) + " RON."
+                + "\n" + " We are looking forward to have you our guest!";
+        String eMail = booking.getClient().getEmail();
+        String subject = "Room reservation for " + booking.getClient().getName();
+        boolean isAvailable = availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(booking.getCheckIn(),booking.getCheckOut());
+        if(!isAvailable){
+            sendEmail.sendEmail(message,eMail,subject);
+        }else{
+            String nonAvailabilityMessage = "Sorry, but we don't have available rooms in the period you chose.";
+            sendEmail.sendEmail(nonAvailabilityMessage,eMail,subject);
+        }
+    }
+
+    public Long getIntervalBetweenTwoDates(Date firstDate, Date secondDate){
+        Long diff = secondDate.getTime() - firstDate.getTime();
+        Long diffDays = diff / (60 * 60 * 1000 * 24);
+        return  diffDays;
+    }
+
+
+
+    public Integer getRoomPrice(Availability availability, Booking booking){
+        Integer price = null;
+        if(booking.getRoomType().equals( String.valueOf(RoomType.SINGLE))){
+            price = availability.getPriceSingle();
+        }else{
+            price = availability.getPriceDouble();
+        }
+        return price;
     }
 
 }

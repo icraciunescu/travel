@@ -20,12 +20,12 @@ public class Availability extends BaseEntity {
     public String roomName;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "from_data", nullable = false)
-    public Date fromData;
+    @Column(name = "from_date", nullable = false)
+    public Date fromDate;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "to_data", nullable = false)
-    public Date toData;
+    @Column(name = "to_date", nullable = false)
+    public Date toDate;
 
     @Column(name = "room_type", length = 40, nullable = false)
     public RoomType roomType;
@@ -45,14 +45,14 @@ public class Availability extends BaseEntity {
                 priceSingle == that.priceSingle &&
                 Objects.equals(property, that.property) &&
                 Objects.equals(roomName, that.roomName) &&
-                Objects.equals(fromData, that.fromData) &&
-                Objects.equals(toData, that.toData) &&
+                Objects.equals(fromDate, that.fromDate) &&
+                Objects.equals(toDate, that.toDate) &&
                 roomType == that.roomType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(property, roomName, fromData, toData, roomType, priceDouble, priceSingle);
+        return Objects.hash(property, roomName, fromDate, toDate, roomType, priceDouble, priceSingle);
     }
 
     public Property getProperty() {
@@ -71,20 +71,20 @@ public class Availability extends BaseEntity {
         this.roomName = roomName;
     }
 
-    public Date getFromData() {
-        return fromData;
+    public Date getFromDate() {
+        return fromDate;
     }
 
-    public void setFromData(Date fromData) {
-        this.fromData = fromData;
+    public void setFromDate(Date fromData) {
+        this.fromDate = fromData;
     }
 
-    public Date getToData() {
-        return toData;
+    public Date getToDate() {
+        return toDate;
     }
 
-    public void setToData(Date toData) {
-        this.toData = toData;
+    public void setToDate(Date toData) {
+        this.toDate = toData;
     }
 
     public RoomType getRoomType() {
@@ -116,8 +116,8 @@ public class Availability extends BaseEntity {
         return "Availability{" +
                 "property=" + property +
                 ", roomName='" + roomName + '\'' +
-                ", fromData=" + fromData +
-                ", toData=" + toData +
+                ", fromData=" + fromDate +
+                ", toData=" + toDate +
                 ", roomType=" + roomType +
                 ", priceDouble=" + priceDouble +
                 ", priceSingle=" + priceSingle +
