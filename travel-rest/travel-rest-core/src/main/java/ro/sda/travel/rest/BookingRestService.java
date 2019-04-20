@@ -2,9 +2,9 @@ package ro.sda.travel.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.sda.travel.commons.EmailService;
 import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.service.BookingService;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -15,6 +15,8 @@ public class BookingRestService {
 
     @Autowired
     private BookingService bookingService;
+
+    EmailService emailService = new EmailService();
 
     @Path("/find-all")
     @GET
@@ -42,6 +44,8 @@ public class BookingRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Booking createBooking(Booking booking) {
-        return bookingService.createBooking(booking);
+        Booking bookingDone = bookingService.createBooking(booking);
+        emailService.sendEmail("booking confirmation", "java2Iasi@gmail.com", "Booking details");
+        return bookingDone;
     }
 }

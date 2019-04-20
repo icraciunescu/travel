@@ -2,7 +2,6 @@ package ro.sda.travel.core.entity;
 
 import ro.sda.travel.core.base.BaseEntity;
 import ro.sda.travel.core.enums.RoomType;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;

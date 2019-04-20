@@ -10,10 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Availability;
-import ro.sda.travel.core.entity.Host;
-import ro.sda.travel.core.entity.Property;
 import ro.sda.travel.core.enums.RoomType;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,41 +34,34 @@ public class AvailabilityControllerTest {
 
     @Test
     @Rollback(false)
+    @Transactional
     public void testCreate() {
 
-        Host host = new Host();
-        host.setName("name");
-        host.setEmail("mail");
-        hostController.createHost(host);
-
-        Property property = new Property();
-        property.setName("name");
-        property.setHost(host);
-        property.setMail("pr@pr.com");
-        propertyController.createProperty(property);
-
         Availability availability = new Availability();
-        availability.setProperty(property);
-        availability.setPriceDouble(1);
+        availability.setProperty(propertyController.getPropertyById(1));
+        availability.setRoomName("nr 3");
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
+        calendar.set(2019, Calendar.AUGUST, 18);
+        Date fromDate = calendar.getTime();
+        availability.setFromDate(fromDate);
 
-        calendar.set(2019, 07, 21);
-        Date fromData = calendar.getTime();
-        availability.setFromDate(fromData);
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTimeInMillis(0);
+        calendar1.set(2019, Calendar.AUGUST, 28);
+        Date toDate = calendar1.getTime();
+        availability.setToDate(toDate);
 
-        availability.setPriceSingle(1);
-        availability.setRoomName("name");
-        availability.setRoomType(RoomType.SINGLE);
+        availability.setRoomType(RoomType.DOUBLE);
+        System.out.println(RoomType.DOUBLE);
+        availability.setPriceDouble(200);
+        availability.setPriceSingle(100);
 
-        calendar.set(2019, 07, 28);
-        Date toData = calendar.getTime();
-        availability.setToDate(toData);
-
-        availabilityController.createAvailability(availability);
         System.out.println(availability.toString());
+        availabilityController.createAvailability(availability);
         Assert.assertNotNull(availability);
+
     }
 
     @Test
@@ -97,7 +87,7 @@ public class AvailabilityControllerTest {
         Date date = calendar.getTime();
         availability.setFromDate(date);
         availability.setRoomName("gwsgfusfjsfhjsfh");
-        availability.setRoomType(RoomType.SINGLE);
+        availability.setRoomType(RoomType.DOUBLE);
         availability.setPriceSingle(2222);
         availability.setPriceDouble(4444);
         calendar.setTimeInMillis(0);
@@ -108,7 +98,6 @@ public class AvailabilityControllerTest {
         calendar.set(2019, 3, 28);
         Date date2 = calendar.getTime();
         availability.setFromDate(date2);
-
 
         System.out.println(availabilities.toString());
         List<Availability> availabilities1 = availabilityController.getAllAvailability();
@@ -151,4 +140,43 @@ public class AvailabilityControllerTest {
 
         Assert.assertNotNull(availability);
     }
+
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void testFindAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual() {
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTimeInMillis(0);
+        calendar1.set(2019, Calendar.AUGUST, 22);
+        Date fromDate = calendar1.getTime();
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(0);
+        calendar2.set(2019, Calendar.AUGUST, 23);
+        Date toDate = calendar2.getTime();
+
+        List<Availability> allAvailability;
+        allAvailability = availabilityController.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
+
+        System.out.println(allAvailability.toString());
+        Assert.assertEquals(1, allAvailability.size());
+    }
+
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void testAllAvailabilityFromAndToDate() {
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTimeInMillis(0);
+        calendar1.set(2019, Calendar.AUGUST, 22);
+        Date fromDate = calendar1.getTime();
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(0);
+        calendar2.set(2019, Calendar.AUGUST, 23);
+        Date toDate = calendar2.getTime();
+
+        availabilityController.allAvailabilityFromAndToDate(fromDate, toDate);
+    }
+
 }

@@ -5,8 +5,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class SendEmail {
-    public void sendEmail(String message, String mailAddress, String subject ) {
+public class EmailService {
+    public void sendEmail(String message, String mailAddress, String subject) {
 
         final String username = "java2Iasi@gmail.com";
         final String password = "JavaIasi2018";

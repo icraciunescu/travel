@@ -9,8 +9,10 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.enums.RoomType;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +34,10 @@ public class BookingControllerTest {
     @Qualifier("propertyController")
     public PropertyController propertyController;
 
+    @Autowired
+    @Qualifier("availabilityController")
+    public AvailabilityController availabilityController;
+
 
     @Test
     @Rollback(false)
@@ -39,24 +45,32 @@ public class BookingControllerTest {
         Booking booking = new Booking();
         booking.setClient(clientController.getClientById(1));
         booking.setProperty(propertyController.getPropertyById(1));
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
-        calendar.set(2019, 07, 15);
+        calendar.set(2019, Calendar.AUGUST, 19);
         Date date = calendar.getTime();
         booking.setCheckIn(date);
-        calendar.set(2019, 07, 25);
-        Date date1 = calendar.getTime();
+
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTimeInMillis(0);
+        calendar1.set(2019, Calendar.AUGUST, 20);
+        Date date1 = calendar1.getTime();
         booking.setCheckOut(date1);
+
         booking.setNrOfPersons(2);
         booking.setRoomType(RoomType.DOUBLE);
         booking.setNumberOfRooms(1);
-        calendar.set(2019, 04, 13);
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(0);
+        calendar2.set(2019, Calendar.JULY, 13);
         Date date2 = calendar.getTime();
         booking.setBookingData(date2);
 
         bookingController.createBooking(booking);
         System.out.println(booking.toString());
-        Assert.assertNotNull(booking);
+        //Assert.assertNotNull(booking);
     }
 
     @Test
@@ -92,19 +106,18 @@ public class BookingControllerTest {
         booking.setNrOfPersons(2);
         booking.setProperty(propertyController.getPropertyById(2));
         booking.setNumberOfRooms(2);
-        booking.setRoomType(RoomType.SINGLE);
+        booking.setRoomType(RoomType.DOUBLE);
         System.out.println(booking.toString());
         List<Booking> bookings1 = bookingController.getAllBooking();
         int expected = bookings.size();
         Assert.assertEquals(expected, actual + 1);
-
     }
 
     @Test
     @Rollback
     public void testUpdate() {
         Booking bookingFromDB = bookingController.getBookingById(11);
-        bookingFromDB.setRoomType(RoomType.SINGLE);
+        bookingFromDB.setRoomType(RoomType.DOUBLE);
         bookingFromDB.setNumberOfRooms(2);
         bookingFromDB.setNrOfPersons(3);
         Calendar calendar = Calendar.getInstance();
@@ -128,5 +141,15 @@ public class BookingControllerTest {
         Booking booking= bookingController.getBookingById(11);
         bookingController.deleteBooking(11);
         Assert.assertNotNull(booking);
+    }
+
+    @Test
+    @Rollback(false)
+    @Transactional
+
+    public void sendBookingMailTest(){
+        Availability availability = availabilityController.getAvailabilityById(3);
+        Booking booking = bookingController.getBookingById(1);
+        bookingController.sendBookingMail(booking,availability);
     }
 }

@@ -2,7 +2,6 @@ package ro.sda.travel.core.entity;
 
 import ro.sda.travel.core.base.BaseEntity;
 import ro.sda.travel.core.enums.RoomType;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -36,6 +35,7 @@ public class Availability extends BaseEntity {
     @Column(name = "price_single", length = 11, nullable = false)
     public int priceSingle;
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,11 +43,11 @@ public class Availability extends BaseEntity {
         Availability that = (Availability) o;
         return priceDouble == that.priceDouble &&
                 priceSingle == that.priceSingle &&
-                Objects.equals(property, that.property) &&
-                Objects.equals(roomName, that.roomName) &&
-                Objects.equals(fromDate, that.fromDate) &&
-                Objects.equals(toDate, that.toDate) &&
-                roomType == that.roomType;
+                property.equals(that.property) &&
+                roomName.equals(that.roomName) &&
+                fromDate.equals(that.fromDate) &&
+                toDate.equals(that.toDate) &&
+                roomType.equals(that.roomType);
     }
 
     @Override
@@ -116,9 +116,9 @@ public class Availability extends BaseEntity {
         return "Availability{" +
                 "property=" + property +
                 ", roomName='" + roomName + '\'' +
-                ", fromData=" + fromDate +
-                ", toData=" + toDate +
-                ", roomType=" + roomType +
+                ", fromDate=" + fromDate +
+                ", toDate=" + toDate +
+                ", roomType='" + roomType + '\'' +
                 ", priceDouble=" + priceDouble +
                 ", priceSingle=" + priceSingle +
                 '}';

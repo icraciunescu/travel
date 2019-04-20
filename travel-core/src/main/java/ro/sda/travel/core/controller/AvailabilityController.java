@@ -34,15 +34,14 @@ public class AvailabilityController {
         availabilityService.deleteAvailability(id);
     }
 
-    public List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromData, Date toData) {
-        return availabilityService.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromData, toData);
+    public List<Availability> findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate) {
+        return availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
     }
 
-    public boolean existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromData, Date toData) {
-        return availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromData, toData);
+    public void allAvailabilityFromAndToDate(Date fromDate, Date toDate) {
+        System.out.println(availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate).toString());
     }
 
-    public List<Availability> getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(Date fromData, Date toData) {
-        return availabilityService.getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(fromData, toData);
-    }
+
+
 }

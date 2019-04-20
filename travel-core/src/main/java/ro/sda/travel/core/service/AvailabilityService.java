@@ -2,13 +2,14 @@ package ro.sda.travel.core.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.repository.AvailabilityRepository;
-
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service("availabilityService")
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class AvailabilityService {
 
     @Autowired
@@ -35,15 +36,9 @@ public class AvailabilityService {
         availabilityRepository.delete(id);
     }
 
-    public List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate) {
-        return availabilityRepository.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
+    public List<Availability> findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate) {
+        return availabilityRepository.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
     }
 
-    public boolean existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate) {
-        return availabilityRepository.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
-    }
 
-    public List<Availability> getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(Date fromDate, Date toDate) {
-        return availabilityRepository.getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(fromDate, toDate);
-    }
 }
