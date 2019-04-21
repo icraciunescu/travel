@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.repository.AvailabilityRepository;
+
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +40,5 @@ public class AvailabilityService {
     public List<Availability> findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate) {
         return availabilityRepository.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
     }
-
 
 }

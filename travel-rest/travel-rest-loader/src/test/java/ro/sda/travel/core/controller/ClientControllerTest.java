@@ -25,9 +25,9 @@ public class ClientControllerTest {
     @Rollback(false)
     public void testCreate() {
         Client client = new Client();
-        client.setName("vasile");
-        client.setEmail("old@mail.com");
-        client.setTelephone("123456789");
+        client.setName("ion");
+        client.setEmail("icraciunescu@hotmail.com");
+        client.setTelephone("0745202778");
         clientController.createClient(client);
         System.out.println(client.toString());
         Assert.assertNotNull(client);

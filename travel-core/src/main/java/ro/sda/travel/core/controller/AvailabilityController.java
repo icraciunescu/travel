@@ -30,6 +30,10 @@ public class AvailabilityController {
         return availabilityService.updateAvailability(availability);
     }
 
+    public void splitAvailability(int id) {
+//        availabilityService.splitAvailability(id);
+    }
+
     public void deleteAvailability(int id) {
         availabilityService.deleteAvailability(id);
     }

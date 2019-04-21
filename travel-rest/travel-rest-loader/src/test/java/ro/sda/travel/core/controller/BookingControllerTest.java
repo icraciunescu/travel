@@ -42,9 +42,11 @@ public class BookingControllerTest {
     @Test
     @Rollback(false)
     public void testCreate() {
+
         Booking booking = new Booking();
         booking.setClient(clientController.getClientById(1));
         booking.setProperty(propertyController.getPropertyById(1));
+        booking.setAvailability(availabilityController.getAvailabilityById(1));
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
@@ -70,7 +72,7 @@ public class BookingControllerTest {
 
         bookingController.createBooking(booking);
         System.out.println(booking.toString());
-        //Assert.assertNotNull(booking);
+        Assert.assertNotNull(booking);
     }
 
     @Test

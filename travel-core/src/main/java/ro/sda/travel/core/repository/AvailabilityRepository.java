@@ -9,6 +9,8 @@ import java.util.List;
 public interface AvailabilityRepository extends JpaRepository<Availability, Integer>  {
 
     List<Availability> findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate);
+
 }
+
 
 
