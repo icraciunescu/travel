@@ -8,7 +8,6 @@ import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.enums.RoomType;
 import ro.sda.travel.core.repository.BookingRepository;
-
 import java.util.Date;
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class BookingService {
                 + "\n" + booking.getRoomType()
                 + "\n" + " check-in date: " + booking.getCheckIn()
                 + "\n" + " check-out date: " + booking.getCheckOut()
-                + "\n" + "price: " + getIntervalBetweenTwoDates(booking.getCheckIn(), booking.getCheckOut()) *
+                + "\n" + " price: " + getIntervalBetweenTwoDates(booking.getCheckIn(), booking.getCheckOut()) *
                 getRoomPrice(availability, booking) + " RON."
                 + "\n" + " We are looking forward to have you our guest!";
         String eMail = booking.getClient().getEmail();

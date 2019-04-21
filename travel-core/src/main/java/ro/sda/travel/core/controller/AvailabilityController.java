@@ -30,10 +30,6 @@ public class AvailabilityController {
         return availabilityService.updateAvailability(availability);
     }
 
-    public void splitAvailability(int id) {
-//        availabilityService.splitAvailability(id);
-    }
-
     public void deleteAvailability(int id) {
         availabilityService.deleteAvailability(id);
     }
@@ -42,8 +38,10 @@ public class AvailabilityController {
         return availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
     }
 
-    public void allAvailabilityFromAndToDate(Date fromDate, Date toDate) {
-        System.out.println(availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate).toString());
+    public void allAvailabilitiesFromAndToDate(Date fromDate, Date toDate) {
+        List<Availability> allAvailabilities =
+                availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
+        System.out.println(allAvailabilities.toString());
     }
 
 

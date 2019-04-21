@@ -39,17 +39,17 @@ public class AvailabilityControllerTest {
 
         Availability availability = new Availability();
         availability.setProperty(propertyController.getPropertyById(1));
-        availability.setRoomName("nr 3");
+        availability.setRoomName("nr 5");
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
-        calendar.set(2019, Calendar.AUGUST, 18);
+        calendar.set(2019, Calendar.AUGUST, 21);
         Date fromDate = calendar.getTime();
         availability.setFromDate(fromDate);
 
         Calendar calendar1 = Calendar.getInstance();
         calendar1.setTimeInMillis(0);
-        calendar1.set(2019, Calendar.AUGUST, 28);
+        calendar1.set(2019, Calendar.SEPTEMBER, 28);
         Date toDate = calendar1.getTime();
         availability.setToDate(toDate);
 
@@ -152,14 +152,14 @@ public class AvailabilityControllerTest {
 
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(0);
-        calendar2.set(2019, Calendar.AUGUST, 23);
+        calendar2.set(2019, Calendar.AUGUST, 27);
         Date toDate = calendar2.getTime();
 
         List<Availability> allAvailability;
         allAvailability = availabilityController.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
 
         System.out.println(allAvailability.toString());
-        Assert.assertEquals(1, allAvailability.size());
+        Assert.assertEquals(2, allAvailability.size());
     }
 
     @Test
@@ -173,10 +173,10 @@ public class AvailabilityControllerTest {
 
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(0);
-        calendar2.set(2019, Calendar.AUGUST, 23);
+        calendar2.set(2019, Calendar.AUGUST, 27);
         Date toDate = calendar2.getTime();
 
-        availabilityController.allAvailabilityFromAndToDate(fromDate, toDate);
+        availabilityController.allAvailabilitiesFromAndToDate(fromDate, toDate);
     }
 
 }

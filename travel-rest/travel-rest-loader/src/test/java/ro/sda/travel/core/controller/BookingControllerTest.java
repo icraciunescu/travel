@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.enums.RoomType;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -50,13 +49,13 @@ public class BookingControllerTest {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
-        calendar.set(2019, Calendar.AUGUST, 19);
+        calendar.set(2019, Calendar.AUGUST, 20);
         Date date = calendar.getTime();
         booking.setCheckIn(date);
 
         Calendar calendar1 = Calendar.getInstance();
         calendar1.setTimeInMillis(0);
-        calendar1.set(2019, Calendar.AUGUST, 20);
+        calendar1.set(2019, Calendar.AUGUST, 23);
         Date date1 = calendar1.getTime();
         booking.setCheckOut(date1);
 
@@ -66,7 +65,7 @@ public class BookingControllerTest {
 
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(0);
-        calendar2.set(2019, Calendar.JULY, 13);
+        calendar2.set(2019, Calendar.JULY, 15);
         Date date2 = calendar.getTime();
         booking.setBookingData(date2);
 
@@ -150,7 +149,7 @@ public class BookingControllerTest {
     @Transactional
 
     public void sendBookingMailTest(){
-        Availability availability = availabilityController.getAvailabilityById(3);
+        Availability availability = availabilityController.getAvailabilityById(1);
         Booking booking = bookingController.getBookingById(1);
         bookingController.sendBookingMail(booking,availability);
     }

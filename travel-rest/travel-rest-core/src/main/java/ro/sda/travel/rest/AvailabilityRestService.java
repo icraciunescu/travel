@@ -26,9 +26,7 @@ public class AvailabilityRestService {
     }
 
     @Path("/find")
-
     @GET
-
     @Produces(MediaType.APPLICATION_JSON)
     public List<Availability>findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(@QueryParam("fromDate") String fromDate, @QueryParam("toDate") String toDate) throws ParseException {
         Date from = new SimpleDateFormat("yyyy-MM-dd").parse(fromDate);
