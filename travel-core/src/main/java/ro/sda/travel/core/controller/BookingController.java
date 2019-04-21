@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.sda.travel.core.entity.Availability;
 import ro.sda.travel.core.entity.Booking;
 import ro.sda.travel.core.service.BookingService;
-
 import java.util.List;
 
 @RestController

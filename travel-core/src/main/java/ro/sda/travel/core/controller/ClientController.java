@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import ro.sda.travel.core.entity.Client;
 import ro.sda.travel.core.service.ClientService;
-
 import java.util.List;
 
 @RestController

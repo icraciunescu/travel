@@ -37,7 +37,6 @@ public class BookingControllerTest {
     @Qualifier("availabilityController")
     public AvailabilityController availabilityController;
 
-
     @Test
     @Rollback(false)
     public void testCreate() {
@@ -46,6 +45,9 @@ public class BookingControllerTest {
         booking.setClient(clientController.getClientById(1));
         booking.setProperty(propertyController.getPropertyById(1));
         booking.setAvailability(availabilityController.getAvailabilityById(1));
+        Availability availability = availabilityController.getAvailabilityById(1);
+        int availabilityId = availability.getId();
+        System.out.println(availabilityId);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
@@ -70,9 +72,73 @@ public class BookingControllerTest {
         booking.setBookingData(date2);
 
         bookingController.createBooking(booking);
+
+        Availability availability1 = new Availability();
+        Availability availability2 = new Availability();
+
+        availability1.setFromDate(availability.fromDate);
+        availability1.setPriceDouble(availability.getPriceDouble());
+        availability1.setPriceSingle(availability.getPriceSingle());
+        availability1.setRoomName(availability.getRoomName());
+        availability1.setRoomType(availability.getRoomType());
+        availability1.setToDate(date);
+        availability1.setProperty(availability.getProperty());
+
+        availabilityController.createAvailability(availability1);
+
+        availability2.setFromDate(date1);
+        availability2.setPriceDouble(availability.getPriceDouble());
+        availability2.setPriceSingle(availability.getPriceSingle());
+        availability2.setRoomName(availability.getRoomName());
+        availability2.setRoomType(availability.getRoomType());
+        availability2.setToDate(availability.toDate);
+        availability2.setProperty(availability.getProperty());
+
+        availabilityController.createAvailability(availability2);
+
+        availabilityController.deleteAvailability(availabilityId);
+
         System.out.println(booking.toString());
         Assert.assertNotNull(booking);
+
     }
+
+
+//    @Test
+//    @Rollback(false)
+//    public void testCreate() {
+//
+//        Booking booking = new Booking();
+//        booking.setClient(clientController.getClientById(1));
+//        booking.setProperty(propertyController.getPropertyById(1));
+//        booking.setAvailability(availabilityController.getAvailabilityById(1));
+//
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(0);
+//        calendar.set(2019, Calendar.AUGUST, 20);
+//        Date date = calendar.getTime();
+//        booking.setCheckIn(date);
+//
+//        Calendar calendar1 = Calendar.getInstance();
+//        calendar1.setTimeInMillis(0);
+//        calendar1.set(2019, Calendar.AUGUST, 23);
+//        Date date1 = calendar1.getTime();
+//        booking.setCheckOut(date1);
+//
+//        booking.setNrOfPersons(2);
+//        booking.setRoomType(RoomType.DOUBLE);
+//        booking.setNumberOfRooms(1);
+//
+//        Calendar calendar2 = Calendar.getInstance();
+//        calendar2.setTimeInMillis(0);
+//        calendar2.set(2019, Calendar.JULY, 15);
+//        Date date2 = calendar.getTime();
+//        booking.setBookingData(date2);
+//
+//        bookingController.createBooking(booking);
+//        System.out.println(booking.toString());
+//        Assert.assertNotNull(booking);
+//    }
 
     @Test
     @Rollback(false)
@@ -139,8 +205,8 @@ public class BookingControllerTest {
     @Test
     @Rollback
     public void testDelete(){
-        Booking booking= bookingController.getBookingById(11);
-        bookingController.deleteBooking(11);
+        bookingController.deleteBooking(2);
+        Booking booking= bookingController.getBookingById(2);
         Assert.assertNotNull(booking);
     }
 

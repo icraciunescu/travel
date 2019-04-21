@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import ro.sda.travel.core.entity.Rating;
 import ro.sda.travel.core.service.RatingService;
-
 import java.util.List;
 
 @RestController
